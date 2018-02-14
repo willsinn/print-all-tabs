@@ -29,12 +29,24 @@ var selectedTabs = {tab:}
             var selected = tabs.filter(function(tab) {
               return tab.highlighted;
             })[0];
-
         })
     })
-  })
 
-  chrome.tabs.onHighlighted.addListener(function callback) //if else statement using highlighted boolean to determine if adding or removing tab
 
+
+
+
+
+
+
+
+
+
+
+  chrome.tabs.onHighlighted.addListener(function(tab) {
+
+  } callback) //if else statement using highlighted boolean to determine if adding or removing tab
+
+  .hasListener(function(tab))
 
   .forEach(function())   //iterates over array, use to print selected tabs
