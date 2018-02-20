@@ -1,21 +1,20 @@
 {
-  "name": "printAllTabsApp",
+  "name": "print-all-tabs-app",
   "description": "Select and print content from multiple chrome tabs at once",
   "version": "0.1",
   "manifest_version": 2,
 
-  "app": {
+
     "background": {
-      "scripts": [
-        "background.js"
+      "scripts": ["background.js"],
+    },
 
-      ],
-    }
-  },
+    "permissions": ["tabs"],
 
-  "permissions": [
-         "tabs"
+    "icons": { "16": "printer-16.png", "128": "printer-128.png" }
 
-  ],
-  "icons": { "16": "printer-16.png", "128": "printer-128.png" }
+
+
+
+
 }

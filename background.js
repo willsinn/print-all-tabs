@@ -22,9 +22,10 @@ Cancel print function
     1. add onClick event listener
 */
 
-var selectedTabs = {tab:}
+var selectedTabs = [selected];
 
-  chrome.browserAction.onClick.addListener(function(tab) {
+//active needed for printing?
+    chrome.browserAction.onClicked.addListener(function(tab) {
           chrome.tabs.query({currentWindow, highlighted: true}, function(tabs) {
             var selected = tabs.filter(function(tab) {
               return tab.highlighted;
@@ -32,6 +33,41 @@ var selectedTabs = {tab:}
         })
     })
 
+    chrome.browserAction.onClicked.addListener(function(tab) {
+        chrome.tabs.highlight({tab, highlighted: true}, function(tabs) {
+            var selected = tabs.filter(function(tab) {
+              selectedTabs.push(tab[0]);
+              return tab.highlighted;
+            })
+        })
+    })
+
+/*
+    2. save highlighted tab
+*/
+
+
+
+chrome.tabs.onHighlighted.addListener(function(tab) {
+
+} callback)
+
+
+
+chrome.tabs.onRemoved.addListener(function(tab), selectedTabs { //integer tabID
+      var removeSelected = selectedTabs.map(function(selected) {return selected[];}).indexOf(tab);
+        selectedTabs.splice(removeSelected, 1);
+
+
+// remove object
+apps.splice(removeIndex, 1);
+
+
+
+      chrome.tabs.query({tab, highlighted: true}, function removeTabSelection(tabs) {
+        find array object and remove from array
+      })
+} tabID, object remove selected number))
 
 
 
@@ -41,12 +77,9 @@ var selectedTabs = {tab:}
 
 
 
-
-
-  chrome.tabs.onHighlighted.addListener(function(tab) {
-
-  } callback) //if else statement using highlighted boolean to determine if adding or removing tab
+chrome.browserAction.onClicked.addListener(function(tab) {
+   //if else statement using highlighted boolean to determine if adding or removing tab
 
   .hasListener(function(tab))
 
-  .forEach(function())   //iterates over array, use to print selected tabs
+  .forEach(function(array object)) print, activetab  //iterates over array, use to print selected tabs
