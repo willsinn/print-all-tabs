@@ -1,5 +1,5 @@
 {
-  "name": "print-all-tabs-app",
+  "name": "print-all-tabs",
   "description": "Select and print content from multiple chrome tabs at once",
   "version": "0.1",
   "manifest_version": 2,
