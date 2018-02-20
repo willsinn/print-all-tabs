@@ -4,17 +4,14 @@
   "version": "0.1",
   "manifest_version": 2,
 
-
-    "background": {
-      "scripts": ["background.js"],
+  "description": "A plain text description",
+  "icons": { "16": "printer-16.png", "128": "printer-128.png" },
+  "browser_action": {
+    "name": "Click to start app"
+  },
+  "background": {
+    "scripts": [ "background.js" ]
     },
-
-    "permissions": ["tabs"],
-
-    "icons": { "16": "printer-16.png", "128": "printer-128.png" }
-
-
-
-
+  "permissions": ["tabs"]
 
 }
