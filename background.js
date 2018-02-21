@@ -22,9 +22,31 @@ Cancel print function
     1. add onClick event listener
 */
 
-var selectedTabs = [selected];
 
-//active needed for printing?
+
+
+
+
+
+var selectedTabs = [];
+
+
+chrome.tabs.onHighlighted.addListener(function(selectedTab, highlightInfo) {
+    var selectedTab = 0;
+    for (var i=0; i < selectedTabs.length; i++) {
+      if (selectedTabs[i] === selectedTab)
+          break;
+
+        } else {
+
+          selectedTab[highlightInfo.selectedTabs].highlight.push(highlightInfo);
+        }
+        return selectedTab;
+}
+
+/*
+    2. save highlighted tab
+
     chrome.browserAction.onClicked.addListener(function(tab) {
           chrome.tabs.query({currentWindow, highlighted: true}, function(tabs) {
             var selected = tabs.filter(function(tab) {
@@ -42,15 +64,11 @@ var selectedTabs = [selected];
         })
     })
 
-/*
-    2. save highlighted tab
-*/
+chrome.browserAction.onClicked.addListener(function(tab) { //highlight
+chrome.tabs.query({selectedTab, highlighted: true}, function(tabs) {
+})}
 
 
-
-chrome.tabs.onHighlighted.addListener(function(tab) {
-
-} callback)
 
 
 
@@ -73,13 +91,45 @@ apps.splice(removeIndex, 1);
 
 
 
+chrome.commands.onCommand.addListener(function (command) {
+    var tabCount = {
+      all: 0,
+      selected: 0
+    };
+
+    var countAll = function(tabs) {
+      tabCount.all = tabs.length;
+    }
+
+    var countHighlighted = function(tabs) {
+      tabCount.highlighted = tabs.length;
+
+
+    tabCount.highlighted.forEach(function(tabs, tabCount[selected]) {
+        var action_url = "javascript:window.print();";      }
+    )
+
+})
 
 
 
 
+  chrome.browserAction.onClicked.addListener(function(tab) {  //print activetab, active needed for printing?
+    selectedTab[] = !selectedTab
 
-  chrome.browserAction.onClicked.addListener(function(tab) {  //print activetab
-    var action_url = "javascript:window.print();";
     chrome.tabs.update(tab.id, {url: action_url});
   });
-  .forEach(function(array object)) print, activetab
+
+
+
+  // every open tab has an id, all of them are either highlighted or not highlighted
+
+
+  var openTabs = selectedTabs[0];
+  var selectedTabs = "";
+
+
+
+    var createNewTab = chrome.tabs.onCreated.addListener(function(Tab) {
+
+    })
