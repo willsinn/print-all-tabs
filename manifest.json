@@ -5,12 +5,13 @@
   "manifest_version": 2,
 
   "description": "A plain text description",
-  "icons": { "16": "printer-16.png", "128": "printer-128.png" },
   "browser_action": {
-    "name": "Click to start app"
+    "default_title": "Print Selected Tabs",
+    "default_icon": "printer-16.png"
   },
   "background": {
-    "scripts": [ "background.js" ]
+    "scripts": [ "background.js" ],
+    "persistent": false
   },
   "content_scripts": [
     {

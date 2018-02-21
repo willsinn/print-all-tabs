@@ -77,9 +77,9 @@ apps.splice(removeIndex, 1);
 
 
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-   //if else statement using highlighted boolean to determine if adding or removing tab
 
-  .hasListener(function(tab))
-
-  .forEach(function(array object)) print, activetab  //iterates over array, use to print selected tabs
+  chrome.browserAction.onClicked.addListener(function(tab) {  //print activetab
+    var action_url = "javascript:window.print();";
+    chrome.tabs.update(tab.id, {url: action_url});
+  });
+  .forEach(function(array object)) print, activetab
