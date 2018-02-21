@@ -1,4 +1,37 @@
+/* ------------------- SUPER SIMPLE PRINT HIGHLIGHTED TABS ------------------------ */
+
+chrome.commands.onCommand.addListener(function(command) {
+
+      if (command !== 'print-all-tabs')
+          return;
+
+      chrome.tabs.query({highlighted:true, currentWindow:true}, function(tabs) {
+          var tabsToPrint = tabs.map(function(tab) { return tab.id; });
+
+          if (tabsToPrint.length == 0)
+              return;
+
+      chrome.printerProvider.onPrintRequested.addListener()
+
+
+      
+          chrome.windows.create(function(newWindow) {
+              chrome.tabs.query({windowId:newWindow.id}, function(newTabs) {
+                  chrome.tabs.move(tabsToMove, {windowId:newWindow.id,index:-1}, function(movedTabs) {
+                      chrome.tabs.remove(newTabs[0].id);
+                  });
+              });
+          });
+      });
+  });
+})
+var tabsToPrint = []
+
+
+
+
 /*
+
 printAllTabsApp
 ----------------------------------------------------
 Tab selection function array format
@@ -30,6 +63,13 @@ Cancel print function
 
 var selectedTabs = [];
 
+onClick
+  var selectedTab = 0;
+
+chrome.tabs.highlight(function(tabs, highlightInfo) {
+  chrome.tabs.query({tab, highlighted: true})
+  }
+)
 
 chrome.tabs.onHighlighted.addListener(function(selectedTab, highlightInfo) {
     var selectedTab = 0;
@@ -43,6 +83,8 @@ chrome.tabs.onHighlighted.addListener(function(selectedTab, highlightInfo) {
         }
         return selectedTab;
 }
+
+
 
 /*
     2. save highlighted tab

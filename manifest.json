@@ -1,25 +1,31 @@
 {
+
   "name": "print-all-tabs",
   "description": "Select and print content from multiple chrome tabs at once",
   "version": "0.1",
   "manifest_version": 2,
 
   "description": "A plain text description",
+
   "browser_action": {
     "default_title": "Print Selected Tabs",
     "default_icon": "printer-16.png"
   },
+
   "background": {
     "scripts": [ "background.js" ],
     "persistent": false
   },
-  "content_scripts": [
-    {
-      "matches": ["http://*/*", "https://*/*"],
-      "js": ["contentscript.js"]
-    }
+
+  "commands": {
+    "print-all-tabs": {
+        "suggested_key": {
+          "default": "Command+Down"
+        }
+     }
+   },
+
+  "permissions": ["tabs", "http://*/*", "https://*/*", "printerProvider"
   ],
-  "permissions": ["tabs"]
-
-
+  
 }
