@@ -1,5 +1,31 @@
 /* ------------------- SUPER SIMPLE PRINT HIGHLIGHTED TABS ------------------------ */
 
+
+chrome.printerProvider.onGetPrintersRequested.addListener(
+    function (resultCallback) {
+        var printerId = callBack( [{
+      id: 'net://192.16.1.18', // printer address
+      name: 'My Printer',
+    }] );
+  }
+);
+
+
+
+chrome.tabs.query({highlighted:true, currentWindow:true},
+    function(tabs) {
+    var tabsToPrint = tabs.map(
+      function(tab) {
+         return tab.id;
+       });
+
+chrome.printerProvider.onPrintRequested.addListener(
+    function(tabsToPrint,
+      callBack() {
+
+})
+
+
 chrome.commands.onCommand.addListener(function(command) {
 
       if (command !== 'print-all-tabs')
@@ -11,10 +37,15 @@ chrome.commands.onCommand.addListener(function(command) {
           if (tabsToPrint.length == 0)
               return;
 
-      chrome.printerProvider.onPrintRequested.addListener()
+              chrome.printerProvider.onPrintRequested.addListener(function(tabsToPrint) {
 
+              })
 
-      
+      chrome.printerProvider.onGetPrintersRequested.addListener(
+        function(printers) {
+        var printerId = printers.filter(function(printer) {return printer.id});
+        }
+
           chrome.windows.create(function(newWindow) {
               chrome.tabs.query({windowId:newWindow.id}, function(newTabs) {
                   chrome.tabs.move(tabsToMove, {windowId:newWindow.id,index:-1}, function(movedTabs) {
@@ -25,7 +56,52 @@ chrome.commands.onCommand.addListener(function(command) {
       });
   });
 })
-var tabsToPrint = []
+
+
+chrome.test.sendMessage('loaded', function(test) {
+  chrome.test.runTests([function printTest() {
+    if (test == 'NO_LISTENER') {
+      chrome.test.sendMessage('ready');
+      chrome.test.succeed();
+      return;
+    }
+
+    chrome.printerProvider.onPrintRequested.addListener(function(job,
+                                                                 callback) {
+      chrome.test.assertFalse(!!chrome.printerProviderInternal);
+      chrome.test.assertTrue(!!job);
+
+      if (test == 'ASYNC_RESPONSE') {
+        setTimeout(callback.bind(null, 'OK'), 0);
+        chrome.test.succeed();
+        return;
+      }
+
+      if (test == 'INVALID_VALUE') {
+        chrome.test.assertThrows(
+            callback,
+            ['XXX'],
+            'Invalid value for argument 1. ' +
+            'Value must be one of: ' +
+            '[OK, FAILED, INVALID_TICKET, INVALID_DATA].');
+      } else {
+        chrome.test.assertTrue(test == 'OK' || test == 'FAILED' ||
+            test == 'INVALID_TICKET' || test == 'INVALID_DATA');
+        callback(test);
+      }
+
+      chrome.test.assertThrows(
+          callback,
+          [test],
+          'Event callback must not be called more than once.');
+
+      chrome.test.succeed();
+    });
+
+    chrome.test.sendMessage('ready');
+  }]);
+});
+
 
 
 
