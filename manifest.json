@@ -17,15 +17,7 @@
     "persistent": false
   },
 
-  "commands": {
-    "print-all-tabs": {
-        "suggested_key": {
-          "default": "Command+Down"
-        }
-     }
-   },
-
   "permissions": ["tabs", "http://*/*", "https://*/*", "printerProvider"
-  ],
-  
+  ]
+
 }

@@ -1,6 +1,14 @@
 /* ------------------- SUPER SIMPLE PRINT HIGHLIGHTED TABS ------------------------ */
+/*   manifest command
+"commands": {
+  "print-all-tabs": {
+      "suggested_key": {
+        "default": "Command+P"
 
-
+      }
+   }
+ },
+*/
 chrome.commands.onCommand.addListener(function(command) {
 
     if (command !== 'print-all-tabs')
@@ -86,8 +94,23 @@ chrome.commands.onCommand.addListener(function(command) {
 });
 
 
+var selectedTabs = [];
 
+function selectedOrder() {
+    chrome.tabs.onHighlighted.addListener(function(selectedTab, highlightInfo) {
+      var selectedTab = 0;
+        for (var i=0; i < selectedTabs.length; i++) {
 
+          if (selectedTabs[i] == selectedTab) //or if (selectedTab == highlighted)
+          return;
+
+        } else {
+
+          selectedTab[highlightInfo.selectedTabs].highlight.push(selectedTabs);
+        }
+        return tab.highlighted;
+      }
+}
 
 
 /*
@@ -121,33 +144,31 @@ Cancel print function
 
 
 
-var selectedTabs = [];
 
-onClick
-  var selectedTab = 0;
-
-chrome.tabs.highlight(function(tabs, highlightInfo) {
-  chrome.tabs.query({tab, highlighted: true})
-  }
-)
-
-chrome.tabs.onHighlighted.addListener(function(selectedTab, highlightInfo) {
-    var selectedTab = 0;
-    for (var i=0; i < selectedTabs.length; i++) {
-      if (selectedTabs[i] === selectedTab)
-          break;
-
-        } else {
-
-          selectedTab[highlightInfo.selectedTabs].highlight.push(highlightInfo);
-        }
-        return tab.highlighted;
-}
 
 
 
 /*
     2. save highlighted tab
+
+    var selectedTabs = [];
+
+
+      var selectedTab = 0;
+
+    chrome.tabs.highlight(function(tabs, highlightInfo) {
+      chrome.tabs.query({tab, highlighted: true})
+      }
+    )
+
+
+
+
+
+
+
+
+
 
     chrome.browserAction.onClicked.addListener(function(tab) {
           chrome.tabs.query({currentWindow, highlighted: true}, function(tabs) {
@@ -156,6 +177,9 @@ chrome.tabs.onHighlighted.addListener(function(selectedTab, highlightInfo) {
             })[0];
         })
     })
+
+
+
 
     chrome.browserAction.onClicked.addListener(function(tab) {
         chrome.tabs.highlight({tab, highlighted: true}, function(tabs) {
